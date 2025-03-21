@@ -17,10 +17,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { useEffect, useRef, useState } from "react";
 import { Navigation, Pagination } from "swiper/modules";
 
-// import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { collegeExams, collegesList, faqs, whyChooseUs } from "@/lib/colleges";
 import { CollegeExamType, CollegeListType, FAQs, WhyChooseUs } from "@/lib/types";
-// import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -104,47 +104,47 @@ export default function Home() {
     );
   };
 
-  // const CollegeCarousel = () => {
-  //   return (
-  //     <Carousel
-  //       plugins={[
-  //         Autoplay({
-  //           delay: 2000,
-  //         }),
-  //       ]}
-  //     >
-  //       <CarouselContent>
-  //         {Array.from({ length: 3 }).map((_, index) => (
-  //           <CarouselItem key={index}>
-  //             <div className="p-1">
-  //               <Card className="">
-  //                 <CardContent className="flex flex-col aspect-square items-center justify-center p-6">
-  //                   {collegesList
-  //                     .filter(
-  //                       (_: any, i: number) => i > index * 8 && i <= (index + 1) * 8
-  //                     )
-  //                     .map((college: CollegeListType) => (
-  //                       <div
-  //                         key={college.id}
-  //                         className=" font-semibold p-2 text-sm my-2 flex gap-x-2 shadow-md rounded-lg w-full justify-between items-center"
-  //                       >
-  //                         <img
-  //                           src={college.logo}
-  //                           alt={college.collegeName}
-  //                           className=" h-8"
-  //                         />
-  //                         <p> {college.collegeName}</p>
-  //                       </div>
-  //                     ))}
-  //                 </CardContent>
-  //               </Card>
-  //             </div>
-  //           </CarouselItem>
-  //         ))}
-  //       </CarouselContent>
-  //     </Carousel>
-  //   );
-  // };
+  const CollegeCarousel = () => {
+    return (
+      <Carousel
+        plugins={[
+          Autoplay({
+            delay: 2000,
+          }),
+        ]}
+      >
+        <CarouselContent>
+          {Array.from({ length: 3 }).map((_, index) => (
+            <CarouselItem key={index}>
+              <div className="p-1">
+                <Card className="">
+                  <CardContent className="flex flex-col aspect-square items-center justify-center p-6">
+                    {collegesList
+                      .filter(
+                        (_: any, i: number) => i > index * 8 && i <= (index + 1) * 8
+                      )
+                      .map((college: CollegeListType) => (
+                        <div
+                          key={college.id}
+                          className=" font-semibold p-2 text-sm my-2 flex gap-x-2 shadow-md rounded-lg w-full justify-between items-center"
+                        >
+                          <img
+                            src={college.logo}
+                            alt={college.collegeName}
+                            className=" h-8"
+                          />
+                          <p> {college.collegeName}</p>
+                        </div>
+                      ))}
+                  </CardContent>
+                </Card>
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+      </Carousel>
+    );
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -321,8 +321,7 @@ export default function Home() {
               Top-Tier Institutions We've Worked With
             </h2>
             {isMobile ? (
-              // <CollegeCarousel />
-              <></>
+              <CollegeCarousel />
             ) : (
               <div className="grid grid-cols-3 gap-1 mt-2 text-neutral-600">
                 {collegesList.map((college: CollegeListType, index: number) => (
@@ -342,7 +341,6 @@ export default function Home() {
                 ))}
               </div>
             )}
-            {/* <CollegeCarousel /> */}
           </div>
         </section>
 
