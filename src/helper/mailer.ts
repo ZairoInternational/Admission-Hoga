@@ -1,8 +1,8 @@
-import bcryptjs from "bcryptjs";
 import nodemailer from "nodemailer";
 
 import admission from "@/models/admission";
 import { OtpTemplate } from "./emailTemplates";
+import { AxiosError } from "axios";
 
 interface SendEmailParams {
   email: string;
@@ -17,12 +17,11 @@ export const verifyLandingPageEmail = async ({
   email,
   emailType,
   otp,
-  userId,
 }: SendEmailParams): Promise<{ success: boolean; message: string }> => {
   // let otp: number | null = null;
   try {
-    const hashedToken = await bcryptjs.hash(userId.toString(), 10);
-    const encodedToken = encodeURIComponent(hashedToken);
+    // const hashedToken = await bcryptjs.hash(userId.toString(), 10);
+    // const encodedToken = encodeURIComponent(hashedToken);
     // Update user record in DB based on email type
     switch (emailType) {
       case "OTP":
@@ -48,7 +47,7 @@ export const verifyLandingPageEmail = async ({
     }
 
     // Configure nodemailer transporter
-    let transporter = nodemailer.createTransport({
+    const transporter = nodemailer.createTransport({
       // service: "gmail",
       host: "smtp.gmail.com",
       port: 465,
@@ -96,8 +95,12 @@ export const verifyLandingPageEmail = async ({
 
     console.log("Email sent successfully");
     return { success: true, message: "Email sent successfully." };
-  } catch (error: any) {
-    console.error("Error sending email:", error);
-    throw new Error("Failed to send email: " + error.message);
+  } catch (err: unknown) {
+    if (err instanceof AxiosError) {
+      console.error("An Axios error occurred:", err.response?.data.message);
+    } else {
+      console.error("An unexpected error occurred:", err);
+    }
+    throw new Error("Failed to send email: " + err);
   }
 };

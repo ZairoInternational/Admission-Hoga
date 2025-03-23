@@ -41,7 +41,6 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const [isMobile, setIsMobile] = useState(false);
-  const [collegeListIndex, setCollegeListIndex] = useState(0);
 
   const toggleAccordion = (index: number) => {
     setOpenAccordion(openAccordion === index ? null : index);
@@ -64,46 +63,6 @@ export default function Home() {
     return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
-  const collegesDiv = () => {
-    return (
-      <div className=" w-full border grid grid-cols-2 md:grid-cols-3 text-sm md:text-base mt-4 relative border-neutral-800 min-h-64 box-border justify-center">
-        <div
-          className={` bg-neutral-200 p-1 rounded-md ${
-            collegeListIndex == 0 ? "hidden md:block" : "hidden md:block"
-          }  border border-neutral-800`}
-        >
-          {collegesList
-            ?.filter((_: any, i: number) => i <= 8)
-            .map((item: { id: number; collegeName: string }, index: number) => (
-              <p className=" p-1">{item.collegeName}</p>
-            ))}
-        </div>
-        <div
-          className={` bg-neutral-200 p-1 rounded-md ${
-            collegeListIndex == 1 ? "md:hidden block" : "hidden md:block"
-          }`}
-        >
-          {collegesList
-            ?.filter((_: any, i: number) => i > 8 && i <= 17)
-            .map((item: { id: number; collegeName: string }, index: number) => (
-              <p className=" p-1">{item.collegeName}</p>
-            ))}
-        </div>
-        <div
-          className={` bg-neutral-200 p-1 rounded-md ${
-            collegeListIndex == 2 ? "md:hidden block" : "hidden md:block"
-          }`}
-        >
-          {collegesList
-            ?.filter((_: any, i: number) => i > 17)
-            .map((item: { id: number; collegeName: string }, index: number) => (
-              <p className=" p-1">{item.collegeName}</p>
-            ))}
-        </div>
-      </div>
-    );
-  };
-
   const CollegeCarousel = () => {
     return (
       <Carousel
@@ -121,7 +80,8 @@ export default function Home() {
                   <CardContent className="flex flex-col aspect-square items-center justify-center p-6">
                     {collegesList
                       .filter(
-                        (_: any, i: number) => i > index * 8 && i <= (index + 1) * 8
+                        (_: CollegeListType, i: number) =>
+                          i > index * 8 && i <= (index + 1) * 8
                       )
                       .map((college: CollegeListType) => (
                         <div
@@ -214,31 +174,31 @@ export default function Home() {
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white shadow-md">
             <button
               onClick={() => scrollToSection(heroRef)}
-              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-orange-500 hover:bg-gray-50 w-full text-left"
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 w-full text-left"
             >
               Home
             </button>
             <button
               onClick={() => scrollToSection(testimonialsRef)}
-              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-orange-500 hover:bg-gray-50 w-full text-left"
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 w-full text-left"
             >
               Testimonials
             </button>
             <button
               onClick={() => scrollToSection(servicesRef)}
-              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-orange-500 hover:bg-gray-50 w-full text-left"
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 w-full text-left"
             >
               Services
             </button>
             <button
               onClick={() => scrollToSection(aboutRef)}
-              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-orange-500 hover:bg-gray-50 w-full text-left"
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 w-full text-left"
             >
               About Us
             </button>
             <button
               onClick={() => scrollToSection(accordionRef)}
-              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-orange-500 hover:bg-gray-50 w-full text-left"
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 w-full text-left"
             >
               FAQ
             </button>
@@ -318,13 +278,13 @@ export default function Home() {
         <section>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <h2 className="text-4xl font-extrabold text-gray-900 text-center">
-              Top-Tier Institutions We've Worked With
+              Top-Tier Institutions We&apos;ve Worked With
             </h2>
             {isMobile ? (
               <CollegeCarousel />
             ) : (
               <div className="grid grid-cols-3 gap-1 mt-2 text-neutral-600">
-                {collegesList.map((college: CollegeListType, index: number) => (
+                {collegesList.map((college: CollegeListType) => (
                   <div
                     key={college.id}
                     className="bg-white rounded-xl text-center border p-2"
@@ -356,7 +316,10 @@ export default function Home() {
             <div className=" flex justify-between mt-4">
               <div className=" text-left grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
                 {whyChooseUs.map((item: WhyChooseUs, index: number) => (
-                  <div className="bg-white rounded-lg shadow-md text-center w-full my-2">
+                  <div
+                    className="bg-white rounded-lg shadow-md text-center w-full my-2"
+                    key={index}
+                  >
                     {/* Logo */}
                     <div className="flex justify-center">
                       <img src={item.logo} alt="Logo" className=" h-16" />
@@ -383,7 +346,7 @@ export default function Home() {
         >
           <div className="text-center py-4">
             <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-              Master India's Leading Entrance Exams
+              Master India&apos;s Leading Entrance Exams
             </h2>
           </div>
           {/* Slider Wrapper */}
@@ -401,7 +364,7 @@ export default function Home() {
             loop
             className="w-full"
           >
-            {collegeExams.map((item: CollegeExamType, index: number) => (
+            {collegeExams.map((item: CollegeExamType) => (
               <SwiperSlide
                 key={item.id}
                 className=" bg-gray-100 rounded-lg p-6 flex flex-col items-center text-center"

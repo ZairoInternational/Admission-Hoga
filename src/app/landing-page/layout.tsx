@@ -1,10 +1,6 @@
 "use client"; // Ensures the component runs on the client side
 import { Poppins } from "next/font/google";
 import "../globals.css";
-// import "@/fonts/line-awesome-1.3.0/css/line-awesome.css";
-// import "@/styles/index.scss";
-
-// import "rc-slider/assets/index.css";
 
 const poppins = Poppins({
   subsets: ["latin"],

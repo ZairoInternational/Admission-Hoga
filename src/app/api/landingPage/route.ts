@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import admission from "@/models/admission";
+
 import { connectDb } from "@/helper/db";
+import admission from "@/models/admission";
 
 connectDb();
 

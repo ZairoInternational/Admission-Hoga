@@ -43,7 +43,7 @@ const PhoneInputLayout: React.ForwardRefExoticComponent<PhoneInputProps> =
            *
            * @param {E164Number | undefined} value - The entered value
            */
-          // @ts-ignore
+          //@ts-expect-error - Ignoring type error because onChange can be undefined
           onChange={(value) => onChange?.(value || "")}
           {...props}
         />
@@ -52,18 +52,20 @@ const PhoneInputLayout: React.ForwardRefExoticComponent<PhoneInputProps> =
   );
 PhoneInputLayout.displayName = "PhoneInput";
 
-const InputComponent = React.forwardRef<HTMLInputElement, any>(
-  ({ className, ...props }, ref) => (
-    <input
-      className={cn(
-        "rounded-e-lg rounded-s-none px-2 ml-1 w-full bg-background outline-none border ",
-        className
-      )}
-      {...props}
-      ref={ref}
-    />
-  )
-);
+// const InputComponent = React.forwardRef<HTMLInputElement, any>(
+const InputComponent = React.forwardRef<
+  HTMLInputElement,
+  React.InputHTMLAttributes<HTMLInputElement>
+>(({ className, ...props }, ref) => (
+  <input
+    className={cn(
+      "rounded-e-lg rounded-s-none px-2 ml-1 w-full bg-background outline-none border ",
+      className
+    )}
+    {...props}
+    ref={ref}
+  />
+));
 InputComponent.displayName = "InputComponent";
 
 type CountrySelectOption = { label: string; value: RPNInput.Country };

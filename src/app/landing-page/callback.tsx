@@ -1,16 +1,11 @@
 "use client";
 
-import axios from "axios";
-import Link from "next/link";
+import axios, { AxiosError } from "axios";
 import type React from "react";
 import { useState } from "react";
 import { toast, Toaster } from "sonner";
-import { GrGroup } from "react-icons/gr";
 import { Loader2, X } from "lucide-react";
 
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { PhoneInputLayout as PhoneInput } from "@/components/PhoneInputLayout";
 import {
   Select,
   SelectItem,
@@ -21,11 +16,13 @@ import {
   SelectLabel,
 } from "@/components/ui/select";
 import { collegeExams } from "@/lib/colleges";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { PhoneInputLayout as PhoneInput } from "@/components/PhoneInputLayout";
 
 export default function CallbackForm({ onClose }: { onClose: () => void }) {
   // Form fields state
   const [name, setName] = useState("");
-  const [country, setCountry] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [preferredCollege, setPreferredCollege] = useState("");
@@ -40,18 +37,12 @@ export default function CallbackForm({ onClose }: { onClose: () => void }) {
   const [phoneOtp, setPhoneOtp] = useState("");
   const [emailVerified, setEmailVerified] = useState(false);
   const [phoneVerified, setPhoneVerified] = useState(false);
-  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
   const [emailLoader, setEmailLoader] = useState(false);
   const [phoneLoader, setPhoneLoader] = useState(false);
 
   // Form validation
   const [errors, setErrors] = useState<Record<string, string>>({});
-
-  // Generate OTP (in a real app, this would be sent via email/SMS)
-  const generateOtp = () => {
-    return Math.floor(100000 + Math.random() * 900000).toString();
-  };
 
   // Mock OTPs (in a real app, these would be sent to the user)
 
@@ -73,15 +64,19 @@ export default function CallbackForm({ onClose }: { onClose: () => void }) {
 
     try {
       setEmailLoader(true);
-      const response = await axios.post(`/api/landingPage/verifyEmail`, {
+      await axios.post(`/api/landingPage/verifyEmail`, {
         phone,
         email,
         OTPverification: false,
       });
       toast(`OTP sent to ${email}`);
       setShowEmailOtp(true);
-    } catch (err: any) {
-      setErrors((prev) => ({ ...prev, email: err.response.data.message }));
+    } catch (err: unknown) {
+      if (err instanceof AxiosError) {
+        setErrors((prev) => ({ ...prev, email: err.response?.data.message }));
+      } else {
+        console.error("An unexpected error occurred:", err);
+      }
     } finally {
       setEmailLoader(false);
     }
@@ -98,15 +93,18 @@ export default function CallbackForm({ onClose }: { onClose: () => void }) {
 
     try {
       setPhoneLoader(true);
-      const response = await axios.post("/api/landingPage/verifyPhone", {
+      await axios.post("/api/landingPage/verifyPhone", {
         email,
         phone,
       });
       toast(`OTP sent to ${phone}`);
       setShowPhoneOtp(true);
-    } catch (err: any) {
-      // console.log("error in sending OTP to mobile: ", err);
-      toast.error(`Error in sending OTP to mobile: ${err.response.data.message}`);
+    } catch (err: unknown) {
+      if (err instanceof AxiosError) {
+        console.error("Error in sending OTP to mobile", err.response?.data.message);
+      } else {
+        console.error("Error in sending OTP to mobile", err);
+      }
     } finally {
       setPhoneLoader(false);
     }
@@ -116,7 +114,7 @@ export default function CallbackForm({ onClose }: { onClose: () => void }) {
     e.preventDefault();
 
     try {
-      const response = await axios.post("/api/verifyEmailOTP", {
+      await axios.post("/api/verifyEmailOTP", {
         email,
         otp: emailOtp,
         OTPverification: true,
@@ -125,8 +123,12 @@ export default function CallbackForm({ onClose }: { onClose: () => void }) {
       setEmailVerified(true);
       setShowEmailOtp(false);
       toast("Email verified successfully");
-    } catch (err) {
-      setErrors((prev) => ({ ...prev, emailOtp: "Invalid OTP" }));
+    } catch (err: unknown) {
+      if (err instanceof AxiosError) {
+        setErrors((prev) => ({ ...prev, emailOtp: "Invalid OTP" }));
+      } else {
+        console.error("Error in verifying email OTP", err);
+      }
     }
   };
 
@@ -134,7 +136,7 @@ export default function CallbackForm({ onClose }: { onClose: () => void }) {
     e.preventDefault();
 
     try {
-      const response = await axios.post("/api/verifyPhoneOTP", {
+      await axios.post("/api/verifyPhoneOTP", {
         phone,
         otp: phoneOtp,
         OTPVerification: true,
@@ -142,8 +144,12 @@ export default function CallbackForm({ onClose }: { onClose: () => void }) {
       setErrors((prev) => ({ ...prev, phoneOtp: "" }));
       setPhoneVerified(true);
       setShowPhoneOtp(false);
-    } catch (err: any) {
-      setErrors((prev) => ({ ...prev, phoneOtp: "Invalid OTP" }));
+    } catch (err: unknown) {
+      if (err instanceof AxiosError) {
+        setErrors((prev) => ({ ...prev, phoneOtp: "Invalid OTP" }));
+      } else {
+        console.error("An unexpected error occurred:", err);
+      }
     }
   };
 
@@ -170,7 +176,7 @@ export default function CallbackForm({ onClose }: { onClose: () => void }) {
     }
 
     try {
-      const response = await axios.patch("/api/landingPage", {
+      await axios.patch("/api/landingPage", {
         name,
         phone,
         email,
@@ -179,16 +185,19 @@ export default function CallbackForm({ onClose }: { onClose: () => void }) {
         location,
         year,
       });
-      setIsFormSubmitted(true);
-    } catch (err: any) {
-      toast.error("Failed to submit callback request.");
+    } catch (err: unknown) {
+      if (err instanceof AxiosError) {
+        setErrors((prev) => ({ ...prev, email: err.response?.data.message }));
+        toast.error("Failed to submit callback request: ", err.response?.data.message);
+      } else {
+        console.error("An unexpected error occurred:", err);
+      }
     }
 
     toast("Your callback request has been submitted successfully");
 
     // Reset form
     setName("");
-    setCountry("");
     setPhone("");
     setEmail("");
     setEmailVerified(false);
