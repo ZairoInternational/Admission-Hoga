@@ -12,6 +12,7 @@ const generateOTP = () => {
 
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const twilioPhone = process.env.TWILIO_PHONE_NUMBER;
 
 const client = twilio(accountSid, authToken);
 
@@ -53,13 +54,19 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    client.messages.create({
-      messagingServiceSid: "MG5b053ac4666ff04ad3946b4b939f5548",
-      to: `whatsapp:${phone}`,
-      contentSid: "HXfe4d03946bf3e5b41bf5c98e9bcab1fa",
-      contentVariables: JSON.stringify({
-        "1": newOTP,
-      }),
+    // client.messages.create({
+    //   messagingServiceSid: "MG5b053ac4666ff04ad3946b4b939f5548",
+    //   to: `whatsapp:${phone}`,
+    //   contentSid: "HXfe4d03946bf3e5b41bf5c98e9bcab1fa",
+    //   contentVariables: JSON.stringify({
+    //     "1": newOTP,
+    //   }),
+    // });
+
+    await client.messages.create({
+      body: `Your OTP is ${newOTP}`,
+      from: `${twilioPhone}`,
+      to: `${phone}`,
     });
 
     return NextResponse.json(

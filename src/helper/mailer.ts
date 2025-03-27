@@ -53,7 +53,7 @@ export const verifyLandingPageEmail = async ({
       port: 465,
       secure: true,
       auth: {
-        user: "no-reply@vacationsaga.com",
+        user: "hello@admissionhoga.com",
         pass: process.env.GMAIL_APP_PASSWORD,
       },
     });
@@ -77,7 +77,8 @@ export const verifyLandingPageEmail = async ({
     }
 
     const mailOptions = {
-      from: "No Reply <no-reply@vacationsaga.com>",
+      // from: "No Reply <no-reply@vacationsaga.com>",
+      from: "Admission Hoga <hello@admissionhoga.com>",
       to: email,
       subject,
       html: templateContent,

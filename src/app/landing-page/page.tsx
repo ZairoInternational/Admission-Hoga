@@ -3,15 +3,15 @@
 import {
   Users,
   MapPin,
-  Facebook,
-  Linkedin,
-  Instagram,
+  // Facebook,
+  // Linkedin,
+  // Instagram,
   ChevronUp,
   ChevronDown,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { FaPinterest } from "react-icons/fa";
+// import { FaPinterest } from "react-icons/fa";
 import Autoplay from "embla-carousel-autoplay";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useEffect, useRef, useState } from "react";
@@ -32,8 +32,8 @@ import Script from "next/script";
 
 export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
-  const testimonialsRef = useRef<HTMLDivElement>(null);
-  const servicesRef = useRef<HTMLDivElement>(null);
+  const whyChooseUsRef = useRef<HTMLDivElement>(null);
+  const howWeWorkRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
   const accordionRef = useRef<HTMLDivElement>(null);
 
@@ -129,17 +129,17 @@ export default function Home() {
               >
                 Home
               </button>
-              <button
-                onClick={() => scrollToSection(testimonialsRef)}
+              {/* <button
+                onClick={() => scrollToSection(whyChooseUsRef)}
                 className="text-gray-700 hover:text-primary transition-colors"
               >
-                Testimonials
-              </button>
+                Why Choose Us
+              </button> */}
               <button
-                onClick={() => scrollToSection(servicesRef)}
+                onClick={() => scrollToSection(howWeWorkRef)}
                 className="text-gray-700 hover:text-primary transition-colors"
               >
-                Services
+                How We Work
               </button>
               <button
                 onClick={() => scrollToSection(aboutRef)}
@@ -186,16 +186,16 @@ export default function Home() {
               Home
             </button>
             <button
-              onClick={() => scrollToSection(testimonialsRef)}
+              onClick={() => scrollToSection(whyChooseUsRef)}
               className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 w-full text-left"
             >
-              Testimonials
+              Why Choose Us
             </button>
             <button
-              onClick={() => scrollToSection(servicesRef)}
+              onClick={() => scrollToSection(howWeWorkRef)}
               className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 w-full text-left"
             >
-              Services
+              How We Work
             </button>
             <button
               onClick={() => scrollToSection(aboutRef)}
@@ -313,7 +313,7 @@ export default function Home() {
 
         {/* Why Choose Us ? */}
         <section
-          ref={testimonialsRef}
+          ref={whyChooseUsRef}
           className="relative w-full max-w-7xl mx-auto mt-4 p-4 "
         >
           <div className="text-center py-4">
@@ -348,7 +348,7 @@ export default function Home() {
 
         {/* College Exams */}
         <section
-          ref={testimonialsRef}
+          // ref={whyChooseUsRef}
           className="relative w-full max-w-7xl mx-auto mt-4 p-4 "
         >
           <div className="text-center py-4">
@@ -384,7 +384,10 @@ export default function Home() {
           </Swiper>
         </section>
 
-        <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl mb-8 w-full text-center">
+        <h2
+          className="text-3xl font-extrabold text-gray-900 sm:text-4xl mb-8 w-full text-center"
+          ref={howWeWorkRef}
+        >
           How We Work
         </h2>
         <section className=" flex justify-center h-[60vh] md:h-[70vh]">
@@ -410,9 +413,6 @@ export default function Home() {
               <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
                 About Us
               </h2>
-              <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
-                Creating unforgettable travel experiences since 2017
-              </p>
             </div>
             <div className="mt-12 lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
               <div className=" ">
@@ -520,18 +520,15 @@ export default function Home() {
                   height={45}
                   className="mr-2"
                 /> */}
-                <span className="ml-2 text-xl font-bold">Admission Hoga</span>
+                <span className=" text-xl font-bold">Admission Hoga</span>
               </div>
-              <p className="mt-4 text-base text-gray-400">
-                Creating unforgettable travel experiences since 2017.
-              </p>
               <p className="mt-2 text-base text-gray-400">
                 117/N/70 3rd Floor Kakadeo Kanpur
               </p>
               <p className="mt-2 text-base text-gray-400">admissionhoga0@gmail.com</p>
               <p className="mt-2 text-base text-gray-400">+91 7897251166</p>
             </div>
-            <div className="flex space-x-6">
+            {/* <div className="flex space-x-6">
               <a
                 href="https://www.facebook.com/Vacationsaga/"
                 className="text-gray-400 hover:text-white"
@@ -556,7 +553,7 @@ export default function Home() {
               >
                 <Linkedin className="h-6 w-6" />
               </a>
-            </div>
+            </div> */}
           </div>
           <div className="mt-8 border-t border-gray-700 pt-8">
             <p className="text-base text-gray-400 text-center">

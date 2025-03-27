@@ -35,7 +35,7 @@ export const OtpTemplate = (otp: number) => {
       <header style="text-align: center; padding-bottom: 20px">
         <img
           src="https://vacationsaga.b-cdn.net/assets/owl.png"
-          alt="VacationSaga Logo"
+          alt="AdmissionHoga Logo"
           style="max-width: 150px"
         />
         <h2
@@ -113,9 +113,9 @@ export const OtpTemplate = (otp: number) => {
         <p style="margin: 0 0 10px">
           Contact our support team at
           <a
-            href="mailto:info@vacationsaga.com"
+            href="mailto:admissionhoga0@gmail.com"
             style="color: #65A4ED; text-decoration: none; font-weight: 500"
-            >info@vacationsaga.com</a
+            >admissionhoga0@gmail.com</a
           >.
         </p>
         <p style="margin: 0">
@@ -140,9 +140,9 @@ export const OtpTemplate = (otp: number) => {
           color: #888888;
         "
       >
-        <p style="margin: 0">© 2024 VacationSaga. All rights reserved.</p>
+        <p style="margin: 0">© 2025 Admission Hoga. All rights reserved.</p>
         <p style="margin-top: 5px">
-          VacationSaga, 123 Main St, Suite 500, City, Country
+          Admission Hoga, 117/N/70 3rd Floor Kakadeo Kanpur
         </p>
       </footer>
     </div>
