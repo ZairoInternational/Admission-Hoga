@@ -146,33 +146,39 @@ export const collegeExams = [
   },
   {
     id: 3,
-    exam_name: "SNAP",
-    full_form: "Symbiosis National Aptitude Test",
-    description: "Symbiosis Group",
-  },
-  {
-    id: 4,
     exam_name: "CMAT",
     full_form: "Common Management Admission Test",
     description: "AICTE Approved Colleges",
   },
   {
-    id: 5,
+    id: 4,
     exam_name: "MAT",
     full_form: "Management Aptitude Test",
     description: "National-Level MBA Entrance",
   },
   {
-    id: 6,
+    id: 5,
     exam_name: "CUET",
     full_form: "Common University Entrance Test",
     description: "Central & State Universities",
   },
   {
-    id: 7,
+    id: 6,
     exam_name: "MHCET",
     full_form: "Maharashtra Common Entrance Test",
     description: "Maharashtra’s Top Colleges",
+  },
+  {
+    id: 7,
+    exam_name: "CLAT",
+    full_form: "Common Law Admission Test",
+    description: "Top Law Colleges",
+  },
+  {
+    id: 8,
+    exam_name: "JEE",
+    full_form: "Joint Entrance Examination",
+    description: "Top BTech Colleges",
   },
 ];
 

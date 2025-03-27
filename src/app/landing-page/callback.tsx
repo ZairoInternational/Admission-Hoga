@@ -19,6 +19,8 @@ import { collegeExams } from "@/lib/colleges";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { PhoneInputLayout as PhoneInput } from "@/components/PhoneInputLayout";
+import { Checkbox } from "@/components/ui/checkbox";
+import Link from "next/link";
 
 export default function CallbackForm({ onClose }: { onClose: () => void }) {
   // Form fields state
@@ -29,6 +31,7 @@ export default function CallbackForm({ onClose }: { onClose: () => void }) {
   const [examGiven, setExamGiven] = useState("");
   const [location, setLocation] = useState("");
   const [year, setYear] = useState(2024);
+  const [isAgree, setIsAgree] = useState(false);
 
   // Verification states
   const [showEmailOtp, setShowEmailOtp] = useState(false);
@@ -159,7 +162,7 @@ export default function CallbackForm({ onClose }: { onClose: () => void }) {
     // Validate all fields
     const newErrors: Record<string, string> = {};
 
-    if (!name) newErrors.name = "Name is required";
+    if (!isAgree) newErrors.agree = "Please Accept the terms and conditions";
     // if (!country) newErrors.country = "Country is required";
     if (!phone) newErrors.phone = "Phone number is required";
     if (!email) newErrors.email = "Email is required";
@@ -374,13 +377,18 @@ export default function CallbackForm({ onClose }: { onClose: () => void }) {
               <SelectContent>
                 <SelectGroup>
                   <SelectLabel>Location</SelectLabel>
-                  {["Mumbai", "Pune", "Banglore", "Ahmedabad"].map(
-                    (city, index: number) => (
-                      <SelectItem key={index} value={city}>
-                        {city}
-                      </SelectItem>
-                    )
-                  )}
+                  {[
+                    "Mumbai",
+                    "Pune",
+                    "Bengaluru",
+                    "Ahmedabad",
+                    "Delhi NCR",
+                    "Other Locations",
+                  ].map((city, index: number) => (
+                    <SelectItem key={index} value={city}>
+                      {city}
+                    </SelectItem>
+                  ))}
                 </SelectGroup>
               </SelectContent>
             </Select>
@@ -406,6 +414,22 @@ export default function CallbackForm({ onClose }: { onClose: () => void }) {
             </Select>
             {errors.year && <p className="text-xs text-red-500">{errors.year}</p>}
           </div>
+
+          {/* Terms & Condition */}
+          <div className="flex items-center space-x-2">
+            <Checkbox id="terms" onCheckedChange={(val) => setIsAgree(val === true)} />
+            <div className=" text-xs">
+              Accept &nbsp;
+              <Link
+                href={"/terms-and-conditions"}
+                target="_blank"
+                className=" text-blue-800 underline"
+              >
+                terms and conditions
+              </Link>
+            </div>
+          </div>
+          {errors.agree && <p className="text-xs text-red-500">{errors.agree}</p>}
 
           <Button
             type="submit"

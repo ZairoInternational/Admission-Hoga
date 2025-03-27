@@ -28,6 +28,7 @@ import "swiper/css/navigation";
 import CallbackForm from "./callback";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Script from "next/script";
 
 export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -81,7 +82,7 @@ export default function Home() {
                     {collegesList
                       .filter(
                         (_: CollegeListType, i: number) =>
-                          i > index * 8 && i <= (index + 1) * 8
+                          i >= index * 9 && i <= (index + 1) * 9 - 1
                       )
                       .map((college: CollegeListType) => (
                         <div
@@ -93,7 +94,7 @@ export default function Home() {
                             alt={college.collegeName}
                             className=" h-8"
                           />
-                          <p> {college.collegeName}</p>
+                          <p className=" text-right"> {college.collegeName}</p>
                         </div>
                       ))}
                   </CardContent>
@@ -108,6 +109,12 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background">
+      <Script async src="https://www.googletagmanager.com/gtag/js?id=AW-16875003439" />
+      {/* <Script>
+        window.dataLayer = window.dataLayer || []; function gtag()
+        {dataLayer.push(arguments)}
+        gtag('js', new Date()); gtag('config', 'AW-16875003439');
+      </Script> */}
       <header className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-sm z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
@@ -226,7 +233,7 @@ export default function Home() {
                 <div className="mt-8 flex flex-col sm:flex-row gap-4">
                   <Link
                     className="px-8 py-3 border border-transparent text-base font-medium rounded-md text-primary bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10 flex items-center justify-center"
-                    href={`https://wa.me/+918960980806`}
+                    href={`https://wa.me/+917897251166`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -521,9 +528,8 @@ export default function Home() {
               <p className="mt-2 text-base text-gray-400">
                 117/N/70 3rd Floor Kakadeo Kanpur
               </p>
-              <p className="mt-2 text-base text-gray-400">
-                info@vacationsaga.com | +91 8960980806
-              </p>
+              <p className="mt-2 text-base text-gray-400">admissionhoga0@gmail.com</p>
+              <p className="mt-2 text-base text-gray-400">+91 7897251166</p>
             </div>
             <div className="flex space-x-6">
               <a
