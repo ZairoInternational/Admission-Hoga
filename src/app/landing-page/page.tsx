@@ -222,12 +222,12 @@ export default function Home() {
             <div className="lg:flex lg:items-center lg:justify-between">
               <div className="lg:w-1/2 pr-4">
                 <h1 className="text-4xl font-extrabold text-white sm:text-4xl md:text-5xl">
-                  Your Dream College is Just a Click Away!
+                  Get Expert Guidance & Secure Your Admission Now!
                 </h1>
                 <div className=" flex gap-x-2 items-center">
                   {/* <Target color="red" /> */}
                   <p className="mt-3 max-w-md text-lg text-white opacity-90">
-                    Get Expert Guidance & Secure Your Admission Now!
+                    Your Dream College is Just a Click Away!
                   </p>
                 </div>
                 <div className="mt-8 flex flex-col sm:flex-row gap-4">
