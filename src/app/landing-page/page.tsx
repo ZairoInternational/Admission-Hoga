@@ -1,8 +1,8 @@
 "use client";
 
 import {
-  Users,
-  MapPin,
+  // Users,
+  // MapPin,
   // Facebook,
   // Linkedin,
   // Instagram,
@@ -141,12 +141,12 @@ export default function Home() {
               >
                 How We Work
               </button>
-              <button
+              {/* <button
                 onClick={() => scrollToSection(aboutRef)}
                 className="text-gray-700 hover:text-primary transition-colors"
               >
                 About Us
-              </button>
+              </button> */}
               <button
                 onClick={() => scrollToSection(accordionRef)}
                 className="text-gray-700 hover:text-primary transition-colors"
@@ -222,18 +222,21 @@ export default function Home() {
             <div className="lg:flex lg:items-center lg:justify-between">
               <div className="lg:w-1/2 pr-4">
                 <h1 className="text-4xl font-extrabold text-white sm:text-4xl md:text-5xl">
-                  Get Expert Guidance & Secure Your Admission Now!
+                  {/* Get Expert Guidance & Secure Your Admission Now! */}
+                  Secure Your Admission to India&apos;s Top Colleges
                 </h1>
                 <div className=" flex gap-x-2 items-center">
                   {/* <Target color="red" /> */}
                   <p className="mt-3 max-w-md text-lg text-white opacity-90">
-                    Your Dream College is Just a Click Away!
+                    {/* Your Dream College is Just a Click Away! */}
+                    Join 1800+ students who just signed up and secured their future. Get
+                    Expert Guidance
                   </p>
                 </div>
                 <div className="mt-8 flex flex-col sm:flex-row gap-4">
                   <Link
                     className="px-8 py-3 border border-transparent text-base font-medium rounded-md text-primary bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10 flex items-center justify-center"
-                    href={`https://wa.me/+917897251166`}
+                    href={`https://wa.me/+917897251166?text=Hey! I saw your ad on Google. Can you share more details about Admission Hoga?`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -270,7 +273,7 @@ export default function Home() {
           {showForm && <CallbackForm onClose={() => setShowForm(false)} />}
         </section>
 
-        <section className=" flex justify-center mt-4">
+        {/* <section className=" flex justify-center mt-4">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <h2 className="text-4xl font-extrabold text-gray-900 text-center">
               Why Choose Us?
@@ -280,9 +283,9 @@ export default function Home() {
               property deserves the best!
             </p>
           </div>
-        </section>
+        </section> */}
 
-        <section>
+        <section className=" md:mt-8">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <h2 className="text-4xl font-extrabold text-gray-900 text-center">
               Top-Tier Institutions We&apos;ve Worked With
@@ -314,7 +317,7 @@ export default function Home() {
         {/* Why Choose Us ? */}
         <section
           ref={whyChooseUsRef}
-          className="relative w-full max-w-7xl mx-auto mt-4 p-4 "
+          className="relative w-full max-w-7xl mx-auto md:mt-4 p-4 "
         >
           <div className="text-center py-4">
             <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
@@ -407,7 +410,7 @@ export default function Home() {
           </video>
         </section>
 
-        <section ref={aboutRef} className=" bg-white mt-12">
+        {/* <section ref={aboutRef} className=" bg-white mt-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
               <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
@@ -458,11 +461,11 @@ export default function Home() {
                     style={{ objectFit: "cover" }}
                     className="rounded-lg"
                   /> */}
-                </div>
+        {/* </div>
               </div>
             </div>
           </div>
-        </section>
+        </section>  */}
 
         {/* FAQs */}
         <section ref={accordionRef} className="py-16 bg-gray-50">
