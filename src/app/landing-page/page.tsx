@@ -109,7 +109,8 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Script async src="https://www.googletagmanager.com/gtag/js?id=AW-16875003439" />
+      {/* <Script async src="https://www.googletagmanager.com/gtag/js?id=AW-16875003439" /> */}
+      <Script async src="https://www.googletagmanager.com/gtag/js?id=AW-16722270097" />
       {/* <Script>
         window.dataLayer = window.dataLayer || []; function gtag()
         {dataLayer.push(arguments)}
