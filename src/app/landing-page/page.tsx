@@ -530,7 +530,7 @@ export default function Home() {
                 117/N/70 3rd Floor Kakadeo Kanpur
               </p>
               <p className="mt-2 text-base text-gray-400">admissionhoga0@gmail.com</p>
-              <p className="mt-2 text-base text-gray-400">+91 7897251166</p>
+              <p className="mt-2 text-base text-gray-400">+91 9120851166</p>
             </div>
             {/* <div className="flex space-x-6">
               <a
